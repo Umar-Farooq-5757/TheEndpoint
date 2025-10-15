@@ -1,6 +1,14 @@
 import React from "react";
 
-const Dropdown = ({ selected, setIsOpen, isOpen, methods, setSelected }) => {
+const Dropdown = ({
+  selected,
+  setIsOpen,
+  isOpen,
+  methods,
+  setSelected,
+  setMethodBoxBackgroundColor,
+  setMethodBoxTextColor,
+}) => {
   const handleSelect = (method) => {
     setSelected(method);
     setIsOpen(false);
@@ -35,11 +43,15 @@ const Dropdown = ({ selected, setIsOpen, isOpen, methods, setSelected }) => {
         <ul className="w-full bg-white border border-gray-300 rounded-md shadow-md mt-1 py-2 absolute top-9">
           {methods.map((method) => (
             <li
-              key={method}
-              className="px-4 py-2 hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer"
-              onClick={() => handleSelect(method)}
+              key={method.type}
+              className="px-4 py-2 transition-all hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer"
+              onClick={() => {
+                handleSelect(method.type);
+                setMethodBoxBackgroundColor(method.backgroundColor);
+                setMethodBoxTextColor(method.textColor);
+              }}
             >
-              {method}
+              {method.type}
             </li>
           ))}
         </ul>

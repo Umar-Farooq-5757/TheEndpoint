@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header className="flex justify-between px-6 sm:px-12 md:px-20 py-3 bg-white">
       <div className="flex items-center gap-3">
-        <Logo padding={'2'}/>
+        <Logo padding={'8px'} size={'26px'}/>
         <div>
           <h1 className="text-2xl font-bold text-[#2758fa]">TestAPI</h1>
           <p className="text-slate-600 text-sm">Simple API Testing</p>

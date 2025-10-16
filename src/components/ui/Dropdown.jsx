@@ -44,7 +44,7 @@ const Dropdown = ({
           {methods.map((method) => (
             <li
               key={method.type}
-              className="px-4 py-2 transition-all hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer"
+              className="px-4 py-2 bg-white transition-all hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer"
               onClick={() => {
                 handleSelect(method.type);
                 setMethodBoxBackgroundColor(method.backgroundColor);

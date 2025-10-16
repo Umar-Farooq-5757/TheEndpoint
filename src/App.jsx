@@ -1,6 +1,7 @@
 import './App.css'
 import Header from './components/Header'
 import RequestBox from './components/RequestBox'
+import ResponseBox from './components/ResponseBox'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <Header/>
       <RequestBox/>
+      <ResponseBox/>
     </>
   )
 }

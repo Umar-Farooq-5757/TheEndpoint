@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@microlink/react-json-view": "^1.27.0",
     "@tailwindcss/vite": "^4.1.14",
     "axios": "^1.12.2",
     "lucide-react": "^0.545.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hot-toast": "^2.6.0",
-    "react-json-view": "^1.21.3",
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {

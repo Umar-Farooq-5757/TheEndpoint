@@ -2,7 +2,7 @@ import { useState } from "react";
 import ResponseData from "./ui/ResponseData";
 import { FileText, SunMoon } from "lucide-react";
 
-const ResponseBox = () => {
+const ResponseBox = ({resData}) => {
   const [theme, setTheme] = useState("monokai");
   const changeTheme = ()=>{
     if(theme == 'monokai'){
@@ -11,68 +11,7 @@ const ResponseBox = () => {
       setTheme('monokai')
     }
   }
-  const [resData, setResData] = useState(
-    [
-  {
-    "productId": "SKU78901",
-    "name": "Wireless Mechanical Keyboard",
-    "price": 129.99,
-    "inStock": 54,
-    "category": "Electronics",
-    "details": {
-      "color": "Grey",
-      "weightKg": 1.1,
-      "features": [
-        "Bluetooth 5.0",
-        "Hot-Swappable Switches",
-        "RGB Backlighting"
-      ]
-    },
-    "reviews": [
-      {
-        "reviewerName": "TechFan",
-        "rating": 5,
-        "comment": "Best keyboard I've ever owned. Very responsive!"
-      },
-      {
-        "reviewerName": "AverageJoe",
-        "rating": 4,
-        "comment": "A bit heavy, but keys feel great."
-      }
-    ],
-    "dateAdded": "2023-10-15T10:30:00Z"
-  },
-  {
-    "productId": "SKU78901",
-    "name": "Wireless Mechanical Keyboard",
-    "price": 129.99,
-    "inStock": 54,
-    "category": "Electronics",
-    "details": {
-      "color": "Grey",
-      "weightKg": 1.1,
-      "features": [
-        "Bluetooth 5.0",
-        "Hot-Swappable Switches",
-        "RGB Backlighting"
-      ]
-    },
-    "reviews": [
-      {
-        "reviewerName": "TechFan",
-        "rating": 5,
-        "comment": "Best keyboard I've ever owned. Very responsive!"
-      },
-      {
-        "reviewerName": "AverageJoe",
-        "rating": 4,
-        "comment": "A bit heavy, but keys feel great."
-      }
-    ],
-    "dateAdded": "2023-10-15T10:30:00Z"
-  }
-]
-  );
+  
   return (
     <section className="bg-white mt-4 mx-3 px-8 py-4 shadow-md rounded-xl">
       <div className="flex justify-between items-center pr-10">

@@ -2,11 +2,12 @@ import { useState } from "react";
 import Logo from "./ui/Logo";
 import Dropdown from "./ui/Dropdown";
 import { Send } from "lucide-react";
+import getMethod from "../utils/getMethod";
 
-const RequestBox = () => {
+const RequestBox = ({ setResData }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState("GET");
-const [URL, setURL] = useState('')
+  const [URL, setURL] = useState("");
 
   const methods = [
     {
@@ -34,15 +35,6 @@ const [URL, setURL] = useState('')
     useState("#ecfdf5");
   const [methodBoxTextColor, setMethodBoxTextColor] = useState("#009966");
 
-  const data = {
-    id: 1,
-    name: "Alice Johnson",
-    details: {
-      age: 30,
-      city: "New York",
-    },
-    roles: ["admin", "editor"],
-  };
   return (
     <section className="bg-white mt-10 mx-3 px-8 py-4 shadow-md rounded-xl">
       <div className="flex gap-3">
@@ -64,7 +56,7 @@ const [URL, setURL] = useState('')
           <input
             type="text"
             value={URL}
-            onChange={(e)=>setURL(e.target.value.trim())}
+            onChange={(e) => setURL(e.target.value.trim())}
             autoComplete="off"
             placeholder="Enter URL..."
             className="border border-gray-300 shadow-sm pl-3 outline-blue-400 transition-all rounded-md grow"
@@ -83,8 +75,13 @@ const [URL, setURL] = useState('')
         </button>
       </div>
       {/* SEND REQUEST BUTTON */}
-      <button className={`${URL=='' &&'opacity-50'} ${URL!='' &&'cursor-pointer'} transition-all flex justify-center font-semibold items-center gap-3 bg-gradient-to-br from-[#2758fa] to-[#4c3ff7] text-white rounded-md my-4 py-2 px-3`}>
-        <Send className="size-4"/>
+      <button
+      onClick={()=>getMethod(URL,setResData)}
+        className={`${URL == "" && "opacity-50"} ${
+          URL != "" && "cursor-pointer"
+        } transition-all flex justify-center font-semibold items-center gap-3 bg-gradient-to-br from-[#2758fa] to-[#4c3ff7] text-white rounded-md my-4 py-2 px-3`}
+      >
+        <Send className="size-4" />
         <p>Send Request</p>
       </button>
     </section>

@@ -7,13 +7,13 @@ const ResponseData = ({ resData,theme }) => {
     <>
     <p className="text-sm font-semibold mt-4">Response Body:</p>
     <div
-      className={`my-2 rounded-md max-h-[70vh] overflow-auto ${
+      className={`my-2 rounded-md max-h-[70vh] min-h-[40vh] overflow-auto ${
         theme == "monokai" ? "bg-[#272822]" : "bg-gray-100 border border-gray-200"
       } p-3`}
     >
       <ReactJson
         src={resData}
-        name="userData"
+        name={false}
         theme={theme}
         enableClipboard={false}
         displayObjectSize={false}

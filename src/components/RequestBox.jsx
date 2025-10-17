@@ -2,7 +2,6 @@ import { useState } from "react";
 import Logo from "./ui/Logo";
 import Dropdown from "./ui/Dropdown";
 import { Send } from "lucide-react";
-import ReactJson from "react-json-view";
 
 const RequestBox = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,7 +87,6 @@ const [URL, setURL] = useState('')
         <Send className="size-4"/>
         <p>Send Request</p>
       </button>
-      {/* <ReactJson src={data} name="userData" /> */}
     </section>
   );
 };

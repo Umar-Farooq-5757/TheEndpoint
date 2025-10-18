@@ -3,7 +3,7 @@ import ResponseData from "./ui/ResponseData";
 import { FileText, SunMoon } from "lucide-react";
 
 const ResponseBox = ({resData}) => {
-  const [theme, setTheme] = useState("monokai");
+  const [theme, setTheme] = useState("rjv-default");
   const changeTheme = ()=>{
     if(theme == 'monokai'){
       setTheme('rjv-default')

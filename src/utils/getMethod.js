@@ -1,12 +1,14 @@
 import axios from "axios";
 
-const getMethod = async (url,setResData) => {
+const getMethod = async (url, setResData) => {
   try {
     const response = await axios.get(url, {});
-    console.log(response);
     setResData(response.data);
   } catch (err) {
-    console.error(err);
+    setResData({
+      message: "Not Found",
+      status: 404,
+    });
   }
 };
 export default getMethod;

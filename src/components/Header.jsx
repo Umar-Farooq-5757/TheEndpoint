@@ -6,12 +6,12 @@ const Header = () => {
       <div className="flex items-center gap-3">
         <Logo padding={'8px'} size={'26px'}/>
         <div>
-          <h1 className="text-2xl font-bold text-[#2758fa]">TestAPI</h1>
+          <h1 className="text-2xl font-bold text-[#2758fa]">The Endpoint</h1>
           <p className="text-slate-600 text-sm">Simple API Testing</p>
         </div>
       </div>
       <a
-        href="https://github.com/umar-farooq-5757/testapi"
+        href="https://github.com/umar-farooq-5757/theendpoint"
         target="_blank"
         className="border border-gray-300  cursor-pointer flex justify-center items-center px-3 transition-all hover:bg-gray-800 hover:text-gray-200   rounded-md"
       >

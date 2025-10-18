@@ -1,16 +1,16 @@
 import React from "react";
 
 const Dropdown = ({
-  selected,
+  selectedMethod,
+  setSelectedMethod,
   setIsOpen,
   isOpen,
   methods,
-  setSelected,
   setMethodBoxBackgroundColor,
   setMethodBoxTextColor,
 }) => {
   const handleSelect = (method) => {
-    setSelected(method);
+    setSelectedMethod(method);
     setIsOpen(false);
   };
   return (
@@ -20,7 +20,7 @@ const Dropdown = ({
         onClick={() => setIsOpen(!isOpen)}
         className="w-full text-left px-4 pr-2 py-2 border rounded-md bg-white text-gray-800 border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none"
       >
-        <span>{selected}</span>
+        <span>{selectedMethod}</span>
         <svg
           className={`w-5 h-5 inline float-right transition-transform duration-200 ${
             isOpen ? "rotate-0" : "-rotate-90"
@@ -37,10 +37,10 @@ const Dropdown = ({
             d="M19 9l-7 7-7-7"
           />
         </svg>
-      </button>
+      </button> 
 
       {isOpen && (
-        <ul className="w-full bg-white border border-gray-300 rounded-md shadow-md mt-1 py-2 absolute top-9">
+        <ul className="w-full bg-white border z-50 border-gray-300 rounded-md shadow-md mt-1 py-2 absolute top-9 **opacity-100 z-10**">
           {methods.map((method) => (
             <li
               key={method.type}

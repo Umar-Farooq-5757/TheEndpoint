@@ -10,7 +10,7 @@ function App() {
     <>
       <Header />
       <RequestBox setResData={setResData} />
-      <ResponseBox resData={resData} />
+      <ResponseBox resData={resData} setResData={setResData} />
     </>
   );
 }

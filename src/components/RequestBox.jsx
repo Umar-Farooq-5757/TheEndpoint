@@ -4,6 +4,7 @@ import Dropdown from "./ui/Dropdown";
 import { Send } from "lucide-react";
 import getMethod from "../utils/getMethod";
 import RequestBody from "./RequestBody";
+import toast, { Toaster } from "react-hot-toast";
 
 const RequestBox = ({ setResData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,8 +37,27 @@ const RequestBox = ({ setResData }) => {
     useState("#ecfdf5");
   const [methodBoxTextColor, setMethodBoxTextColor] = useState("#009966");
 
+  function isValidUrl(string) {
+    const pattern = new RegExp(
+      "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+        "(\\#[-a-z\\d_]*)?$",
+      "i" // fragment locator
+    );
+    return pattern.test(string);
+  }
+
+  const sendRequest = () => {
+    isValidUrl(URL)
+      ? getMethod(URL, setResData)
+      : toast.error("Please enter a valid URL");
+  };
   return (
     <section className="bg-white mt-10 mx-3 px-8 py-4 shadow-md rounded-xl">
+      <Toaster position="top-center" />
       <div className="flex gap-3">
         <Logo padding="6px" size={"16px"} />
         <h2 className="font-medium text-lg">New Request</h2>
@@ -76,10 +96,10 @@ const RequestBox = ({ setResData }) => {
         {selectedMethod}
       </button>
       {/* REQUEST BODY HERE */}
-      {selectedMethod!="GET" && <RequestBody/>}
+      {selectedMethod != "GET" && <RequestBody />}
       {/* SEND REQUEST BUTTON */}
       <button
-        onClick={() => getMethod(URL, setResData)}
+        onClick={sendRequest}
         className={`${URL == "" && "opacity-60"} ${
           URL != "" && "cursor-pointer opacity-85 hover:opacity-100"
         } transition-all flex justify-center font-semibold items-center gap-3 bg-gradient-to-br from-[#2758fa] to-[#4c3ff7] text-white rounded-md mt-10 py-2 px-3`}

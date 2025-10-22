@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const RequestBody = () => {
-  const [placeholder, setPlaceholder] = useState({ key: "value"});
-  const [responseBody, setResponseBody] = useState('')
+const RequestBody = ({requestBody, setRequestBody}) => {
+  const [placeholder, setPlaceholder] = useState({ key: "value" });
+
   return (
     <div className="mt-4">
       <h3 className="text-[#36465c] font-medium text-[15px]">Request Body</h3>
@@ -15,8 +15,8 @@ const RequestBody = () => {
       <textarea
         className="border border-gray-400 min-h-48 font-mono resize-none w-full mt-3 py-[2px] px-3 rounded-md shadow-sm outline-[#2758fa] transition-all"
         id="my-textarea"
-        value={responseBody} 
-        onChange={(e)=>setResponseBody(e.target.value)} 
+        value={requestBody}
+        onChange={(e) => setRequestBody(e.target.value)}
         placeholder={JSON.stringify(placeholder)}
       />
     </div>

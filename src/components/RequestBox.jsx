@@ -9,6 +9,7 @@ import isValidUrl from "../utils/isValidURL.js";
 import validateJSON from "../utils/validateJSON.js";
 import axios from "axios";
 import postMethod from "../utils/postMethod.js";
+import putMethod from "../utils/putMethod.js";
 
 const RequestBox = ({ setResData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,6 +72,24 @@ const RequestBox = ({ setResData }) => {
       }
     }
   };
+  const sendRequestPUTMethod = () => {
+    if (URL) {
+      if (isValidUrl(URL)) {
+        if (requestBody) {
+          if (validateJSON(requestBody).valid) {
+            const dataObject = JSON.parse(requestBody);
+            putMethod(URL, dataObject, setResData);
+          } else {
+            toast.error("Invalid JSON in request body");
+          }
+        }else {
+            toast.error("Request body is required for PUT method");
+        }
+      } else {
+        toast.error("Please enter a valid URL");
+      }
+    }
+  };
   return (
     <section className="bg-white mt-10 mx-3 px-8 py-4 shadow-md rounded-xl">
       <Toaster position="top-center" />
@@ -125,7 +144,10 @@ const RequestBox = ({ setResData }) => {
             sendRequestGETMethod();
           } else if (selectedMethod == "POST") {
             sendRequestPOSTMethod();
-          }else{
+          }else if (selectedMethod == "PUT") {
+            sendRequestPUTMethod();
+          }
+          else{
             let a = 1;
           }
         }}

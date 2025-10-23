@@ -10,6 +10,7 @@ import validateJSON from "../utils/validateJSON.js";
 import axios from "axios";
 import postMethod from "../utils/postMethod.js";
 import putMethod from "../utils/putMethod.js";
+import deleteMethod from "../utils/deleteMethod.js";
 
 const RequestBox = ({ setResData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,6 @@ const RequestBox = ({ setResData }) => {
     useState("#ecfdf5");
   const [methodBoxTextColor, setMethodBoxTextColor] = useState("#009966");
 
-  
   const sendRequestGETMethod = () => {
     if (URL) {
       if (isValidUrl(URL)) {
@@ -64,8 +64,8 @@ const RequestBox = ({ setResData }) => {
           } else {
             toast.error("Invalid JSON in request body");
           }
-        }else {
-            toast.error("Request body is required for POST method");
+        } else {
+          toast.error("Request body is required for POST method");
         }
       } else {
         toast.error("Please enter a valid URL");
@@ -82,9 +82,18 @@ const RequestBox = ({ setResData }) => {
           } else {
             toast.error("Invalid JSON in request body");
           }
-        }else {
-            toast.error("Request body is required for PUT method");
+        } else {
+          toast.error("Request body is required for PUT method");
         }
+      } else {
+        toast.error("Please enter a valid URL");
+      }
+    }
+  };
+  const sendRequestDELETEMethod = () => {
+    if (URL) {
+      if (isValidUrl(URL)) {
+        deleteMethod(URL, setResData);
       } else {
         toast.error("Please enter a valid URL");
       }
@@ -131,7 +140,7 @@ const RequestBox = ({ setResData }) => {
         {selectedMethod}
       </button>
       {/* REQUEST BODY HERE */}
-      {selectedMethod != "GET" && (
+      {selectedMethod != "GET" && selectedMethod != "DELETE" && (
         <RequestBody
           requestBody={requestBody}
           setRequestBody={setRequestBody}
@@ -144,11 +153,10 @@ const RequestBox = ({ setResData }) => {
             sendRequestGETMethod();
           } else if (selectedMethod == "POST") {
             sendRequestPOSTMethod();
-          }else if (selectedMethod == "PUT") {
+          } else if (selectedMethod == "PUT") {
             sendRequestPUTMethod();
-          }
-          else{
-            let a = 1;
+          } else if (selectedMethod == "DELETE") {
+            sendRequestDELETEMethod();
           }
         }}
         className={`${URL == "" && "opacity-60"} ${

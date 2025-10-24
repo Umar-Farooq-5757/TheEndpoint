@@ -100,15 +100,15 @@ const RequestBox = ({ setResData }) => {
     }
   };
   return (
-    <section className="bg-white mt-10 mx-3 px-8 py-4 shadow-md rounded-xl">
+    <section className="bg-white mt-10 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl">
       <Toaster position="top-center" />
       <div className="flex gap-3">
         <Logo padding="6px" size={"16px"} />
         <h2 className="font-medium text-lg">New Request</h2>
       </div>
       <div className="mt-4">
-        <h3 className="text-[#36465c] font-medium text-[15px]">Method & URL</h3>
-        <div className="my-2 flex gap-3">
+        <h3 className="text-[#36465c] font-medium text-sm sm:text-[15px]">Method & URL</h3>
+        <div className="my-2 flex flex-col sm:flex-row  gap-1 sm:gap-3">
           <Dropdown
             selectedMethod={selectedMethod}
             setSelectedMethod={setSelectedMethod}
@@ -124,13 +124,13 @@ const RequestBox = ({ setResData }) => {
             onChange={(e) => setURL(e.target.value.trim())}
             autoComplete="off"
             placeholder="Enter URL..."
-            className="border border-gray-300 shadow-sm pl-3 outline-[#2758fa] transition-all rounded-md grow"
+            className="border border-gray-300 mt-1 sm:mt-0 py-2 sm:py-0 shadow-sm pl-3 outline-[#2758fa] transition-all rounded-md grow"
           />
         </div>
       </div>
       {/* SHOW METHOD BUTTON */}
       <button
-        className={`show-method border rounded-md w-44 mt-2 py-1 font-semibold`}
+        className={`show-method border rounded-md w-36 md:w-44 mt-2 py-1 font-semibold`}
         style={{
           backgroundColor: methodBoxBackgroundColor,
           color: methodBoxTextColor,

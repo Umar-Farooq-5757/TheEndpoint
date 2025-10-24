@@ -5,10 +5,10 @@ const RequestBody = ({requestBody, setRequestBody}) => {
 
   return (
     <div className="mt-4">
-      <h3 className="text-[#36465c] font-medium text-[15px]">Request Body</h3>
-      <h4 className="font-semibold text-[15px] my-2">
+      <h3 className="text-[#36465c] font-medium text-sm sm:text-[15px]">Request Body</h3>
+      <h4 className="font-semibold text-sm sm:text-[15px] my-2">
         Content-Type:{" "}
-        <span className="rounded-md bg-gray-100 border border-gray-200 shadow-xs py-[2px] px-3">
+        <span className="rounded-md bg-gray-100 border border-gray-200 shadow-xs sm:py-[2px] px-2 sm:px-3">
           application/json
         </span>
       </h4>

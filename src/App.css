@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+.react-json-view{
+    white-space: nowrap;
+}

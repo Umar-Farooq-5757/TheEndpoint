@@ -2,12 +2,12 @@ import Logo from "./ui/Logo";
 
 const Header = () => {
   return (
-    <header className="flex justify-between px-6 sm:px-12 md:px-20 py-3 bg-white">
+    <header className="flex justify-between px-2 sm:px-12 md:px-20 py-3 bg-white">
       <div className="flex items-center gap-3">
         <Logo padding={'8px'} size={'26px'}/>
         <div>
-          <h1 className="text-2xl font-bold text-[#2758fa]">The Endpoint</h1>
-          <p className="text-slate-600 text-sm">Simple API Testing</p>
+          <h1 className="text-xl md:text-2xl font-bold text-[#2758fa]">The Endpoint</h1>
+          <p className="text-slate-600 text-xs md:text-sm">Simple API Testing</p>
         </div>
       </div>
       <a

@@ -12,8 +12,8 @@ const ResponseBox = ({ resData, setResData }) => {
     }
   };
   return (
-    <section className="bg-white mt-4 mx-3 px-8 py-4 shadow-md rounded-xl">
-      <div className="flex justify-between items-center pr-10">
+       <section className="bg-white mt-10 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl">
+      <div className="flex justify-between items-center md:pr-10">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-green-600 to-emerald-600 rounded-lg flex items-center justify-center">
             <div className="w-2 h-2 bg-white rounded-full"></div>

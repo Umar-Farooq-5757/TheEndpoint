@@ -14,7 +14,7 @@ const Dropdown = ({
     setIsOpen(false);
   };
   return (
-    <div className="flex flex-col w-44 text-sm relative">
+    <div className="flex flex-col w-36 md:w-44 text-sm relative">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}

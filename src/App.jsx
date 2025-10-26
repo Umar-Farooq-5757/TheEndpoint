@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import RequestBox from "./components/RequestBox";
 import ResponseBox from "./components/ResponseBox";
+import Footer from "./components/Footer";
 
 function App() {
   const [resData, setResData] = useState({});
@@ -10,7 +11,10 @@ function App() {
     <>
       <Header />
       <RequestBox setResData={setResData} />
-      <ResponseBox resData={resData} setResData={setResData} />
+      <div className="relative">
+        <ResponseBox resData={resData} setResData={setResData} />
+        <Footer resData={resData} />
+      </div>
     </>
   );
 }

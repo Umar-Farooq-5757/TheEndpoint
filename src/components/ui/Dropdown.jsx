@@ -8,6 +8,7 @@ const Dropdown = ({
   methods,
   setMethodBoxBackgroundColor,
   setMethodBoxTextColor,
+  isDark
 }) => {
   const handleSelect = (method) => {
     setSelectedMethod(method);
@@ -18,7 +19,7 @@ const Dropdown = ({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full text-left px-4 pr-2 py-2 border rounded-md bg-white text-gray-800 border-gray-300 shadow-sm hover:bg-gray-50 focus:outline-none"
+        className={`w-full text-left px-4 pr-2 py-2 border rounded-md  ${isDark?'bg-[#272727] text-gray-300 hover:bg-gray-700':'bg-white text-gray-800 hover:bg-gray-50'} border-gray-300 shadow-sm  focus:outline-none`}
       >
         <span>{selectedMethod}</span>
         <svg
@@ -40,11 +41,11 @@ const Dropdown = ({
       </button> 
 
       {isOpen && (
-        <ul className="w-full bg-white border z-50 border-gray-300 rounded-md shadow-md mt-1 py-2 absolute top-9 **opacity-100 z-10**">
+        <ul className="w-full border z-50 border-gray-300 rounded-md shadow-md mt-1 py-2 absolute top-9 **opacity-100 z-10**">
           {methods.map((method) => (
             <li
               key={method.type}
-              className="px-4 py-2 bg-white transition-all hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer"
+              className={`px-4 py-2 ${isDark?'bg-[#272727]':'bg-white'} transition-all hover:bg-gradient-to-r hover:from-[#2758fa] hover:to-[#4c3ff7] hover:text-white cursor-pointer`}
               onClick={() => {
                 handleSelect(method.type);
                 setMethodBoxBackgroundColor(method.backgroundColor);

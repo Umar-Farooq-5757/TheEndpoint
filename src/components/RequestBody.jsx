@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
-const RequestBody = ({requestBody, setRequestBody}) => {
+const RequestBody = ({requestBody, setRequestBody,isDark}) => {
   const [placeholder, setPlaceholder] = useState({ key: "value" });
 
   return (
     <div className="mt-4">
-      <h3 className="text-[#36465c] font-medium text-sm sm:text-[15px]">Request Body</h3>
+      <h3 className={`${isDark?'text-[#bec5ce]':'text-[#36465c]'} font-medium text-sm sm:text-[15px]`}>Request Body</h3>
       <h4 className="font-semibold text-sm sm:text-[15px] my-2">
         Content-Type:{" "}
-        <span className="rounded-md bg-gray-100 border border-gray-200 shadow-xs sm:py-[2px] px-2 sm:px-3">
+        <span className={`rounded-md ${isDark?'bg-[#1a1a1a]':'bg-gray-100'} border border-gray-200 shadow-xs sm:py-[2px] px-2 sm:px-3`}>
           application/json
         </span>
       </h4>

@@ -12,9 +12,8 @@ import postMethod from "../utils/postMethod.js";
 import putMethod from "../utils/putMethod.js";
 import deleteMethod from "../utils/deleteMethod.js";
 
-const RequestBox = ({ setResData }) => {
+const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState("GET");
   const [URL, setURL] = useState("");
   const [requestBody, setRequestBody] = useState("");
 
@@ -100,14 +99,14 @@ const RequestBox = ({ setResData }) => {
     }
   };
   return (
-    <section className="bg-white mt-10 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl">
+    <section className={`${isDark?'bg-[#272727]':'bg-white'} mt-10 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl`}>
       <Toaster position="top-center" />
       <div className="flex gap-3">
         <Logo padding="6px" size={"16px"} />
         <h2 className="font-medium text-lg">New Request</h2>
       </div>
       <div className="mt-4">
-        <h3 className="text-[#36465c] font-medium text-sm sm:text-[15px]">Method & URL</h3>
+        <h3 className={` ${isDark?'text-[#bec5ce]':'text-[#36465c]'} font-medium text-sm sm:text-[15px]`}>Method & URL</h3>
         <div className="my-2 flex flex-col sm:flex-row  gap-1 sm:gap-3">
           <Dropdown
             selectedMethod={selectedMethod}
@@ -117,6 +116,7 @@ const RequestBox = ({ setResData }) => {
             setIsOpen={setIsOpen}
             setMethodBoxBackgroundColor={setMethodBoxBackgroundColor}
             setMethodBoxTextColor={setMethodBoxTextColor}
+            isDark={isDark}
           />
           <input
             type="text"
@@ -144,6 +144,7 @@ const RequestBox = ({ setResData }) => {
         <RequestBody
           requestBody={requestBody}
           setRequestBody={setRequestBody}
+          isDark={isDark}
         />
       )}
       {/* SEND REQUEST BUTTON */}

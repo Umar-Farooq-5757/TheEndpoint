@@ -11,11 +11,22 @@ import axios from "axios";
 import postMethod from "../utils/postMethod.js";
 import putMethod from "../utils/putMethod.js";
 import deleteMethod from "../utils/deleteMethod.js";
+import Authorization from "./Authorization.jsx";
+import Headers from "./Headers.jsx";
 
-const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
+const RequestBox = ({
+  setResData,
+  isDark,
+  selectedMethod,
+  setSelectedMethod,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [URL, setURL] = useState("");
   const [requestBody, setRequestBody] = useState("");
+  const [token, setToken] = useState("");
+  const [headersObj, setHeadersObj] = useState({
+    "Content-Type": "application/json",
+  });
 
   const methods = [
     {
@@ -47,7 +58,7 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
   const sendRequestGETMethod = () => {
     if (URL) {
       if (isValidUrl(URL)) {
-        getMethod(URL, setResData);
+        getMethod(URL, setResData, token, headersObj);
       } else {
         toast.error("Please enter a valid URL");
       }
@@ -59,7 +70,7 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
         if (requestBody) {
           if (validateJSON(requestBody).valid) {
             const dataObject = JSON.parse(requestBody);
-            postMethod(URL, dataObject, setResData);
+            postMethod(URL, dataObject, setResData, token, headersObj);
           } else {
             toast.error("Invalid JSON in request body");
           }
@@ -77,7 +88,7 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
         if (requestBody) {
           if (validateJSON(requestBody).valid) {
             const dataObject = JSON.parse(requestBody);
-            putMethod(URL, dataObject, setResData);
+            putMethod(URL, dataObject, setResData, token, headersObj);
           } else {
             toast.error("Invalid JSON in request body");
           }
@@ -92,21 +103,25 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
   const sendRequestDELETEMethod = () => {
     if (URL) {
       if (isValidUrl(URL)) {
-        deleteMethod(URL, setResData);
+        deleteMethod(URL, setResData, token, headersObj);
       } else {
         toast.error("Please enter a valid URL");
       }
     }
   };
   return (
-    <section className={`${isDark?'bg-[#272727]':'bg-white'} mt-10 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl`}>
+    <section
+      className={`${isDark ? "bg-[#272727]" : "bg-white"} mt-5 md:mx-3 px-3 md:px-8 py-4 shadow-md rounded-xl`}>
       <Toaster position="top-center" />
       <div className="flex gap-3">
         <Logo padding="6px" size={"16px"} />
         <h2 className="font-medium text-lg">New Request</h2>
       </div>
       <div className="mt-4">
-        <h3 className={` ${isDark?'text-[#bec5ce]':'text-[#36465c]'} font-medium text-sm sm:text-[15px]`}>Method & URL</h3>
+        <h3
+          className={` ${isDark ? "text-[#bec5ce]" : "text-[#36465c]"} font-medium text-sm sm:text-[15px]`}>
+          Method & URL
+        </h3>
         <div className="my-2 flex flex-col sm:flex-row  gap-1 sm:gap-3">
           <Dropdown
             selectedMethod={selectedMethod}
@@ -135,8 +150,7 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
           backgroundColor: methodBoxBackgroundColor,
           color: methodBoxTextColor,
           borderColor: methodBoxTextColor,
-        }}
-      >
+        }}>
         {selectedMethod}
       </button>
       {/* REQUEST BODY HERE */}
@@ -147,6 +161,12 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
           isDark={isDark}
         />
       )}
+      <Authorization isDark={isDark} token={token} setToken={setToken} />
+      <Headers
+        isDark={isDark}
+        headersObj={headersObj}
+        setHeadersObj={setHeadersObj}
+      />
       {/* SEND REQUEST BUTTON */}
       <button
         onClick={() => {
@@ -162,8 +182,7 @@ const RequestBox = ({ setResData ,isDark,selectedMethod,setSelectedMethod}) => {
         }}
         className={`${URL == "" && "opacity-60"} ${
           URL != "" && "cursor-pointer opacity-85 hover:opacity-100"
-        } transition-all flex justify-center font-semibold items-center gap-3 bg-gradient-to-br from-[#2758fa] to-[#4c3ff7] text-white rounded-md mt-10 py-2 px-3`}
-      >
+        } transition-all flex justify-center font-semibold items-center gap-3 bg-linear-to-br from-[#2758fa] to-[#4c3ff7] text-white rounded-md mt-10 py-2 px-3`}>
         <Send className="size-4" />
         <p>Send Request</p>
       </button>

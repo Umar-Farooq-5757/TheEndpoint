@@ -1,9 +1,18 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-const deleteMethod = async (url, setResData) => {
+const deleteMethod = async (url, setResData, token, headersObj) => {
+  const config = {
+    headers: { ...headersObj },
+  };
+
+  if (token && token.trim() !== "") {
+    config.headers = {
+      Authorization: `Bearer ${token}`,
+    };
+  }
   try {
-    const response = await axios.delete(url);
+    const response = await axios.delete(url, config);
 
     setResData(response.data);
     toast.success("Resource deleted successfully!");
